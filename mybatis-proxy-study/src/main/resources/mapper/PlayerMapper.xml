@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.alex.mybatis.mapper.PlayerMapper">
-    <resultMap id="playerMap" type="com.alex.mybatis.entity.Player">
+    <resultMap id="playerMap" type="Player">
         <id column="id" property="id"/>
         <result column="account_number" property="accountNumber"/>
         <result column="account_name" property="accountName"/>
@@ -17,4 +17,9 @@
     <select id="selectPlayer" resultMap="playerMap">
         SELECT * FROM player WHERE id = #{id}
     </select>
+
+<!--    int updatePlayerNameById(Integer id);-->
+    <update id="updatePlayerNameById">
+        UPDATE player SET account_name = #{newName} WHERE id = #{id}
+    </update>
 </mapper>

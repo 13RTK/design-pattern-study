@@ -16,7 +16,7 @@ public class MybatisUtil {
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(configStream);
     }
 
-    public static SqlSession getSqlSession(InputStream configStream) {
+    public static SqlSession getSqlSession(InputStream configStream, boolean isAutoCommit) {
         if (sqlSessionFactory == null) {
             synchronized(MybatisUtil.class) {
                 if (sqlSessionFactory == null) {
@@ -25,6 +25,6 @@ public class MybatisUtil {
             }
         }
 
-        return sqlSessionFactory.openSession();
+        return sqlSessionFactory.openSession(isAutoCommit);
     }
 }
